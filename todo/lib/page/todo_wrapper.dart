@@ -1,19 +1,39 @@
 import 'package:flutter/cupertino.dart';
-import 'package:todo/model/todo_model.dart';
-import 'package:todo/page/todo_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo/Widgets/todo_widget.dart';
+import 'package:todo/provider/todos_provider.dart';
 
 class TodoWrapper extends StatelessWidget {
-  const TodoWrapper({ Key? key }) : super(key: key);
+  const TodoWrapper({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TodoWidget(
-        todo: Todo(
-            createdTime: DateTime(2021, 8, 19), 
-            title: "Hello World", 
-            description: "This is my first Todo",
-            isDone: false,
+    final provider = Provider.of<TodosProvider>(context);
+    final todos = provider.todos;
+    if (todos.isEmpty) {
+      return const Center(
+        child: Text(
+          "No Todos",
+          style: TextStyle(
+            fontSize: 20.0,
+            color: Colors.deepPurpleAccent,
+            fontWeight: FontWeight.bold,  
+          ),
         ),
-    );
+      );
+    } else {
+      return ListView.separated(
+        padding: const EdgeInsets.all(10.0),
+        physics: const BouncingScrollPhysics(),
+        itemBuilder: (content, index) {
+          return TodoWidget(todo: todos[index]);
+        },
+        separatorBuilder: (content, index) {
+          return const SizedBox(height: 12);
+        },
+        itemCount: todos.length,
+      );
+    }
   }
 }
