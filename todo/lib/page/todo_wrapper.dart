@@ -18,7 +18,7 @@ class TodoWrapper extends StatelessWidget {
           style: TextStyle(
             fontSize: 20.0,
             color: Colors.deepPurpleAccent,
-            fontWeight: FontWeight.bold,  
+            fontWeight: FontWeight.bold,
           ),
         ),
       );
