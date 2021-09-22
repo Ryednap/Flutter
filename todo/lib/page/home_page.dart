@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:todo/Widgets/todo_dialog.dart';
 import "package:todo/main.dart";
+import 'package:todo/page/completed_page.dart';
 import 'package:todo/page/todo_wrapper.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   int _select_index = 0;
   List<Widget> tabs = <Widget>[
     const TodoWrapper(),
-    Container(),
+    const CompletedPage(),
   ];
 
   @override

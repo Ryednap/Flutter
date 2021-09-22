@@ -3,7 +3,10 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:provider/provider.dart';
 import 'package:todo/model/todo_model.dart';
+import 'package:todo/page/create_todo_page.dart';
+import 'package:todo/provider/todos_provider.dart';
 
 class TodoWidget extends StatelessWidget {
   final TodoModel? todo;
@@ -47,6 +50,20 @@ class TodoWidget extends StatelessWidget {
     );
   }
 
+// Utility Function to create Snackbar
+  SnackBar createSnackBar(String content) {
+    return SnackBar(
+      content: Text(content, style: const TextStyle(color: Colors.black)),
+      backgroundColor: Colors.white,
+    );
+  }
+
+  void deleteTodo(BuildContext context, TodoModel todo) {
+    final provider = Provider.of<TodosProvider>(context, listen: false);
+    provider.removeTodo(todo);
+    ScaffoldMessenger.of(context).showSnackBar(createSnackBar("Deleted Todos"));
+  }
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -59,7 +76,10 @@ class TodoWidget extends StatelessWidget {
             icon: Icons.edit,
             color: Colors.green,
             caption: "edit",
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => EditTodoPage(todo: todo)));
+            },
           )
         ],
         secondaryActions: <Widget>[
@@ -67,7 +87,7 @@ class TodoWidget extends StatelessWidget {
             icon: Icons.delete,
             color: Colors.red,
             caption: "delete",
-            onTap: () {},
+            onTap: () => deleteTodo(context, todo!),
           )
         ],
         child: Container(
@@ -78,7 +98,15 @@ class TodoWidget extends StatelessWidget {
             children: [
               Checkbox(
                 value: todo?.isDone,
-                onChanged: (_) {},
+                onChanged: (_) {
+                  final provider =
+                      Provider.of<TodosProvider>(context, listen: false);
+                  final isDone = provider.toggleTodoStatus(todo!);
+                  ScaffoldMessenger.of(context).showSnackBar(createSnackBar(
+                      isDone!
+                          ? "Task Complete"
+                          : "Task is marked incompelete"));
+                },
                 activeColor: Theme.of(context).primaryColor,
                 checkColor: Colors.white,
               ),

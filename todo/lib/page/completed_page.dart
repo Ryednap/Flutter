@@ -1,21 +1,19 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/Widgets/todo_widget.dart';
 import 'package:todo/provider/todos_provider.dart';
 
-class TodoWrapper extends StatelessWidget {
-  const TodoWrapper({Key? key}) : super(key: key);
+class CompletedPage extends StatelessWidget {
+  const CompletedPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    print("on Todo list");
     final provider = Provider.of<TodosProvider>(context);
-    final todos = provider.todos;
+    final todos = provider.completedTodos;
     if (todos.isEmpty) {
       return const Center(
         child: Text(
-          "No Todos",
+          "No Completed Task",
           style: TextStyle(
             fontSize: 20.0,
             color: Colors.deepPurpleAccent,

@@ -48,26 +48,28 @@ class _TodoDialogState extends State<TodoDialog> {
     return AlertDialog(
       content: Form(
         key: _formKey,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            const Text('Add Todo',
-                style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 16,
-                    fontFamily: "Merriweather",
-                    color: Colors.deepOrangeAccent)),
-            const SizedBox(height: 7),
-            TodoForm(
-              onChangedTitle: (title) => setState(() => this.title = title),
-              onChangedDescription: (description) =>
-                  setState(() => this.description = this.description),
-              onSavedTodo: () {
-                addTodo();
-              },
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const Text('Add Todo',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 16,
+                      fontFamily: "Merriweather",
+                      color: Colors.deepOrangeAccent)),
+              const SizedBox(height: 7),
+              TodoForm(
+                onChangedTitle: (title) => setState(() => this.title = title),
+                onChangedDescription: (description) =>
+                    setState(() => this.description = this.description),
+                onSavedTodo: () {
+                  addTodo();
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
