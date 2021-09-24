@@ -11,6 +11,7 @@ import 'package:todo/provider/todos_provider.dart';
 class TodoWidget extends StatelessWidget {
   final TodoModel? todo;
   const TodoWidget({Key? key, @required this.todo}) : super(key: key);
+  static const List<int> colorIndex = [0, 1, 2, 4, 5, 6, 9, 10, 11, 12, 13];
 
 /*
   Builds the title Widget for each single 
@@ -26,7 +27,7 @@ class TodoWidget extends StatelessWidget {
     return Text(
       todo!.title.toString(), // assigning String? to String is an error
       style: const TextStyle(
-        fontSize: 15,
+        fontSize: 18,
         color: Colors.black,
         fontFamily: "Times",
         fontWeight: FontWeight.w600,
@@ -43,7 +44,7 @@ class TodoWidget extends StatelessWidget {
         style: const TextStyle(
           color: Colors.blueGrey,
           fontFamily: "Serif",
-          fontSize: 12,
+          fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
       ),
@@ -53,8 +54,14 @@ class TodoWidget extends StatelessWidget {
 // Utility Function to create Snackbar
   SnackBar createSnackBar(String content) {
     return SnackBar(
-      content: Text(content, style: const TextStyle(color: Colors.black)),
-      backgroundColor: Colors.white,
+      content: Text(
+        content,
+        style: const TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      backgroundColor: Colors.amberAccent.shade100,
     );
   }
 
@@ -93,7 +100,8 @@ class TodoWidget extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(10.0),
           color: Colors
-              .primaries[Random().nextInt(Colors.primaries.length)].shade50,
+              .primaries[colorIndex[Random().nextInt(colorIndex.length)]]
+              .shade50,
           child: Row(
             children: [
               Checkbox(

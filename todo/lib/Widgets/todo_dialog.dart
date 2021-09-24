@@ -63,7 +63,7 @@ class _TodoDialogState extends State<TodoDialog> {
               TodoForm(
                 onChangedTitle: (title) => setState(() => this.title = title),
                 onChangedDescription: (description) =>
-                    setState(() => this.description = this.description),
+                    setState(() => this.description = description),
                 onSavedTodo: () {
                   addTodo();
                 },

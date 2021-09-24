@@ -9,7 +9,6 @@ class TodoWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("on Todo list");
     final provider = Provider.of<TodosProvider>(context);
     final todos = provider.todos;
     if (todos.isEmpty) {

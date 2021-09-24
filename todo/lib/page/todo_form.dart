@@ -1,5 +1,12 @@
 import "package:flutter/material.dart";
 
+/*
+  Todo Form Builder
+  - no functionality (stateless)
+  - only implements UI 
+  - callback function are defination is provided in todo_dialog.dart
+*/
+
 class TodoForm extends StatelessWidget {
   final String title;
   final String description;
@@ -18,7 +25,6 @@ class TodoForm extends StatelessWidget {
   Widget buildTitle() {
     return TextFormField(
       maxLines: 1,
-      initialValue: title,
       onChanged: onChangedTitle,
       validator: (title) {
         if (title!.isEmpty) return 'Title should not be empty';
@@ -35,8 +41,7 @@ class TodoForm extends StatelessWidget {
 
   Widget buildDescription() {
     return TextFormField(
-      maxLines: null,
-      initialValue: description,
+      maxLines: 3,
       onChanged: onChangedDescription,
       decoration: const InputDecoration(
         border: UnderlineInputBorder(),
@@ -51,18 +56,19 @@ class TodoForm extends StatelessWidget {
     return SizedBox(
       width: 100,
       child: ElevatedButton(
-          onPressed: onSavedTodo,
-          child: const Text(
-            "Save",
-            style: TextStyle(
-              color: Colors.black,
-              fontFamily: "Consolas",
-              fontStyle: FontStyle.italic,
-            ),
+        onPressed: onSavedTodo,
+        child: const Text(
+          "Save",
+          style: TextStyle(
+            color: Colors.black,
+            fontFamily: "Consolas",
+            fontStyle: FontStyle.italic,
           ),
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.amber.shade700),
-          )),
+        ),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(Colors.amber.shade700),
+        ),
+      ),
     );
   }
 
