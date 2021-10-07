@@ -9,7 +9,8 @@ class TodoWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<TodosProvider>(context);
+    final provider = Provider.of<TodosProvider>(
+        context); // We want to listen for change here
     final todos = provider.todos;
     if (todos.isEmpty) {
       return const Center(

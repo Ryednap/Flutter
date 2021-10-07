@@ -31,4 +31,20 @@ class TodoModel {
     res += "isDone : $isDone \n";
     return res;
   }
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'title': title,
+        'description': description,
+        'createdTime': createdTime!.toIso8601String(),
+        'isDone': isDone,
+      };
+
+  static TodoModel fromJson(dynamic json) => TodoModel(
+        createdTime: DateTime.parse(json['createdTime'].toString()),
+        id: json['id'],
+        title: json['title'],
+        description: json['description'],
+        isDone: json['isDone'],
+      );
 }

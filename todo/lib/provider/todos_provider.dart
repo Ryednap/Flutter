@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:todo/model/todo_model.dart';
+import 'package:todo/Api/firebase_api.dart';
 
 class TodosProvider extends ChangeNotifier {
-  final List<TodoModel> _todos = [];
+  List<TodoModel> _todos = [];
 
   // getter for incompleted List
   List<TodoModel> get todos =>
@@ -12,10 +14,12 @@ class TodosProvider extends ChangeNotifier {
   List<TodoModel> get completedTodos =>
       _todos.where((task) => task.isDone == true).toList();
 
-  void addTodo(TodoModel object) {
-    //print("add called\n object : $object");
-    _todos.add(object);
-    notifyListeners();
+  void addTodo(TodoModel object) => FirebaseAPI.createTodo(object);
+  void setTodo(List<TodoModel> _todos) {
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      this._todos = _todos;
+      notifyListeners();
+    });
   }
 
   void removeTodo(TodoModel object) {
@@ -30,6 +34,7 @@ class TodosProvider extends ChangeNotifier {
     } else {
       _todos[idx].isDone = true;
     }
+
     notifyListeners();
     return _todos[idx].isDone;
   }

@@ -1,8 +1,12 @@
 import "package:flutter/material.dart";
+import 'package:provider/provider.dart';
+import 'package:todo/Api/firebase_api.dart';
 import 'package:todo/Widgets/todo_dialog.dart';
 import "package:todo/main.dart";
+import 'package:todo/model/todo_model.dart';
 import 'package:todo/page/completed_page.dart';
 import 'package:todo/page/todo_wrapper.dart';
+import 'package:todo/provider/todos_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,6 +25,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    FirebaseAPI.readTodos();
     return Scaffold(
       appBar: AppBar(
         title: const Text(MyApp.title),
@@ -45,7 +50,21 @@ class _HomePageState extends State<HomePage> {
         },
       ),
 
-      body: tabs[_select_index], // body
+      body: StreamBuilder<List<TodoModel>>(
+        stream: FirebaseAPI.readTodos(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return const Text("Something went Wrong contact the developer");
+          } else if (snapshot.hasData) {
+            final List<TodoModel> todos = snapshot.data!;
+            final provider = Provider.of<TodosProvider>(context);
+            provider.setTodo(todos);
+            return tabs[_select_index];
+          }
+          AssertionError("case error StreamBuilder");
+          return const Text("Some Error");
+        },
+      ), // body
 
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
