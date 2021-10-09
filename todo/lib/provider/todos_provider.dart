@@ -22,20 +22,19 @@ class TodosProvider extends ChangeNotifier {
     });
   }
 
+  void updateTodo(TodoModel object, String title, String description) {
+    object.title= title;
+    object.description = description;
+    FirebaseAPI.updateTodo(object);
+  }
+
   void removeTodo(TodoModel object) {
-    _todos.remove(object);
-    notifyListeners();
+    FirebaseAPI.deleteTodo(object);
   }
 
   bool? toggleTodoStatus(TodoModel object) {
-    final int idx = _todos.indexOf(object);
-    if (_todos[idx].isDone == true) {
-      _todos[idx].isDone = false;
-    } else {
-      _todos[idx].isDone = true;
-    }
-
-    notifyListeners();
-    return _todos[idx].isDone;
+    object.isDone = (object.isDone! ^ true);
+    FirebaseAPI.updateTodo(object);
+    return object.isDone;
   }
 }

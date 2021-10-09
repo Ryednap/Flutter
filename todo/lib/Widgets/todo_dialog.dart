@@ -1,5 +1,7 @@
 // ignore_for_file: unnecessary_this
 
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,12 +31,15 @@ class _TodoDialogState extends State<TodoDialog> {
   void addTodo() {
     final isValid = _formKey.currentState!.validate();
     if (!isValid) return;
+    
+    const List<int> colorList = [0, 1, 2, 4, 5, 6, 9, 10, 11, 12, 13];
     // ignore: unnecessary_new
     final newTodo = new TodoModel(
       id: DateTime.now().toString(),
       createdTime: DateTime.now(),
       title: this.title,
       description: this.description,
+      colorIndex: Random().nextInt(colorList.length),
     );
 
     final provider = Provider.of<TodosProvider>(context, listen: false);

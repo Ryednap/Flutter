@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -99,9 +97,7 @@ class TodoWidget extends StatelessWidget {
         ],
         child: Container(
           padding: const EdgeInsets.all(10.0),
-          // color: Colors
-          //    .primaries[colorIndex[Random().nextInt(colorIndex.length)]]
-          //    .shade50,
+          color: Colors.primaries[todo!.colorIndex!.toInt()].shade50,
           child: Row(
             children: [
               Checkbox(

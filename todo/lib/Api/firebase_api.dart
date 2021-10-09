@@ -25,7 +25,8 @@ class FirebaseAPI {
     Stream<QuerySnapshot> stream = _firestore.collection('todos').snapshots();
     List<TodoModel> todos = [];
     stream.listen((event) {
-      todos.clear();
+      todos
+          .clear(); // Bottleneck (Use faster data Structure but fine if the task if of low input complexity)
       for (var element in event.docs) {
         dynamic data = element.data();
         todos.add(TodoModel.fromJson(data));
@@ -35,14 +36,17 @@ class FirebaseAPI {
     return controller.stream;
   }
 
-// Infact this function is never used
 // Because in edit todo_page we are removing the old one and adding the new one.
   static Future<String> updateTodo(TodoModel? todo) async {
     final FirebaseFirestore _firestore = FirebaseFirestore.instance;
     final doc = _firestore.collection('todos').doc(todo?.id);
-	 await doc.update(todo!.toJson());
-	 return doc.id;
+    await doc.update(todo!.toJson());
+    return doc.id;
   }
 
-  // static Future<String> deleteTodo(TodoModel? todo) async {} */
+  static Future<void> deleteTodo(TodoModel? todo) async {
+    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    final doc = _firestore.collection('todos').doc(todo?.id);
+    await doc.delete();
+  }
 }

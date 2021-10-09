@@ -1,5 +1,8 @@
 // Todo class Model for storing data that's needs to passed around
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class TodoModel {
   DateTime? createdTime;
@@ -7,13 +10,18 @@ class TodoModel {
   String? description;
   String? id;
   bool? isDone;
+  int? colorIndex;
+  static const List<int> colorList = [0, 1, 2, 4, 5, 6, 9, 10, 11, 12, 13];
+  
 
   TodoModel(
       {@required this.createdTime,
       @required this.title,
       this.description,
       this.id,
-      this.isDone = false});
+      this.isDone = false,
+      this.colorIndex});
+
   TodoModel.fromTodo(TodoModel other) {
     createdTime = other.createdTime;
     title = other.title;
@@ -29,6 +37,7 @@ class TodoModel {
     res += "title : $title \n";
     res += "description : $description \n";
     res += "isDone : $isDone \n";
+    res += "colorIndex : $colorIndex";
     return res;
   }
 
@@ -38,6 +47,7 @@ class TodoModel {
         'description': description,
         'createdTime': createdTime!.toIso8601String(),
         'isDone': isDone,
+        'colorIndex' : colorIndex,
       };
 
   static TodoModel fromJson(dynamic json) => TodoModel(
@@ -46,5 +56,6 @@ class TodoModel {
         title: json['title'],
         description: json['description'],
         isDone: json['isDone'],
+        colorIndex: json['colorIndex'],
       );
 }

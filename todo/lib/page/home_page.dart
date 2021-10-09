@@ -67,13 +67,14 @@ class _HomePageState extends State<HomePage> {
       ), // body
 
       floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
-          onPressed: () => showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return const TodoDialog();
-                },
-              )),
+        child: const Icon(Icons.add),
+        onPressed: () => showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return const TodoDialog();
+          },
+        ),
+      ),
     );
   }
 }
