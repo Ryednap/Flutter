@@ -8,7 +8,7 @@ How to creater flutter_slidable, and dynamic dashboard based on user input in bo
 
 ## File Info and Dependency Structure
 
-![alt text](https://github.com/Ryednap/Flutter/blob/dev/todo//extras/todo_tree_structure.jpg?raw=true)
+![alt text](https://github.com/Ryednap/Flutter/blob/main/todo//extras/todo_tree_structure.jpg?raw=true)
 
 * **main.dart :** main file of the application, defines the main function which builds a material widget wrapped with changeNotifierProvider which provides the instance of **TodosProvider** class from ***todos_provider.dart*** to all the descendents. (Read more about **ChangeNotifierProvider** and state managment here) [State Management Flutter](https://flutter.dev/docs/development/data-and-backend/state-mgmt/intro)
 
