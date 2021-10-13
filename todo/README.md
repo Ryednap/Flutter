@@ -30,7 +30,7 @@ How to creater flutter_slidable, and dynamic dashboard based on user input in bo
 
 ## In app Screenshots
 
-![alt text](https://github.com/Ryednap/Flutter/blob/dev/todo/extras/no_todos.jpeg?raw=true)
-![alt text](https://github.com/Ryednap/Flutter/blob/dev/todo/extras/completed.jpeg?raw=true)
-![alt text](https://github.com/Ryednap/Flutter/blob/dev/todo/extras/task_complete.jpeg?raw=true)
-![alt text](https://github.com/Ryednap/Flutter/blob/dev/todo/extras/demo.gif?raw=true)
+![alt text](https://github.com/Ryednap/Flutter/blob/main/todo/extras/no_todos.jpeg?raw=true)
+![alt text](https://github.com/Ryednap/Flutter/blob/main/todo/extras/completed.jpeg?raw=true)
+![alt text](https://github.com/Ryednap/Flutter/blob/main/todo/extras/task_complete.jpeg?raw=true)
+![alt text](https://github.com/Ryednap/Flutter/blob/main/todo/extras/demo.gif?raw=true)
