@@ -9,6 +9,15 @@ import 'package:todo/model/todo_model.dart';
 import 'package:todo/page/todo_form.dart';
 import 'package:todo/provider/todos_provider.dart';
 
+/*
+  TodoDialog
+
+  Provides a dialog for creating a new Todo
+  Builds a Form Widget with TextFields for 
+  each title and descritption.
+
+*/
+
 class TodoDialog extends StatefulWidget {
   const TodoDialog({Key? key}) : super(key: key);
 
@@ -31,7 +40,7 @@ class _TodoDialogState extends State<TodoDialog> {
   void addTodo() {
     final isValid = _formKey.currentState!.validate();
     if (!isValid) return;
-    
+
     const List<int> colorList = [0, 1, 2, 4, 5, 6, 9, 10, 11, 12, 13];
     // ignore: unnecessary_new
     final newTodo = new TodoModel(

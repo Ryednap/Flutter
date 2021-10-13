@@ -8,6 +8,27 @@ import 'package:todo/page/completed_page.dart';
 import 'package:todo/page/todo_wrapper.dart';
 import 'package:todo/provider/todos_provider.dart';
 
+/*
+  Home Page
+
+
+  Home Page or the main driver of the entire application
+  It is build on basic [Scaffold Widget] with floating 
+  Action Button and Bottom Nav. On the Main screen
+  one of the two possible ([todoList or comptedPage]) is 
+  displayed based on what user has currently selected on 
+  Bottom Nav.
+
+  Before building the screen, the main body is wrapped in 
+  StreamBuilder which get's stream data from FirebaseAPI class
+  and set's the data instance in Provider Class, and then 
+  the main page is build to render the data got from API
+
+  FloatingAction Button defines an AlertDialog which is 
+  used to create new Todo (builds from [TodoDialog] widget)
+
+*/
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -25,7 +46,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    FirebaseAPI.readTodos();
     return Scaffold(
       appBar: AppBar(
         title: const Text(MyApp.title),

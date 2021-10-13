@@ -6,6 +6,14 @@ import 'package:todo/model/todo_model.dart';
 import 'package:todo/page/edit_todo_page.dart';
 import 'package:todo/provider/todos_provider.dart';
 
+/*
+  TodoWidget
+
+  UI of each single TodoModel how they are finally 
+  rendered on the either of the page ([completed] or [todo])
+
+*/
+
 class TodoWidget extends StatelessWidget {
   final TodoModel? todo;
   const TodoWidget({Key? key, @required this.todo}) : super(key: key);
