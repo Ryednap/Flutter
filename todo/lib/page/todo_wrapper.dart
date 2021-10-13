@@ -4,12 +4,24 @@ import 'package:provider/provider.dart';
 import 'package:todo/Widgets/todo_widget.dart';
 import 'package:todo/provider/todos_provider.dart';
 
+
+/*
+  TodoWrapper
+
+
+  Wrapper class with same funcationaly is [CompletedPage] Widget
+  just it's builds only those TodoModels whose isDone status is 
+  set to False.
+
+*/
+
 class TodoWrapper extends StatelessWidget {
   const TodoWrapper({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<TodosProvider>(context);
+    final provider = Provider.of<TodosProvider>(
+        context); // We want to listen for change here
     final todos = provider.todos;
     if (todos.isEmpty) {
       return const Center(

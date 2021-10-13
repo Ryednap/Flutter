@@ -5,6 +5,18 @@ import 'package:provider/provider.dart';
 import 'package:todo/model/todo_model.dart';
 import 'package:todo/provider/todos_provider.dart';
 
+/*
+  Todo Edit Page
+
+  Expects the todoModel object that has to be edited as argument
+  whose existing content is displayed in the screen which user can
+  edit and after clicking on save. The new state is updated.
+  Updated in the sense the old one is deleted and new one with new 
+  data is added (also preserving the id the we got from firebaseAPI).
+
+
+*/
+
 class EditTodoPage extends StatefulWidget {
   final TodoModel? todo;
   const EditTodoPage({Key? key, @required this.todo}) : super(key: key);

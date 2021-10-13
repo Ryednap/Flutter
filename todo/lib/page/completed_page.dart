@@ -3,6 +3,15 @@ import 'package:provider/provider.dart';
 import 'package:todo/Widgets/todo_widget.dart';
 import 'package:todo/provider/todos_provider.dart';
 
+/*
+  * Completed Page
+  Renders only those TodoModels from the _todo's list (Provider) whose
+  isDone status is setted true. This is done by filering the required
+  objects in the build method itself. Then the valid objects are
+  put in ListView.seperated builder.
+
+*/
+
 class CompletedPage extends StatelessWidget {
   const CompletedPage({Key? key}) : super(key: key);
 
