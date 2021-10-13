@@ -1,14 +1,17 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/color_pallete.dart';
 import 'package:todo/page/home_page.dart';
 import 'package:todo/provider/todos_provider.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget {                                                                                                                                                                                                                                                                                                                                                       
   const MyApp({Key? key}) : super(key: key);
   static const String title = "Todo App";
 

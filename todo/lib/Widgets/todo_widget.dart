@@ -1,12 +1,18 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/model/todo_model.dart';
-import 'package:todo/page/create_todo_page.dart';
+import 'package:todo/page/edit_todo_page.dart';
 import 'package:todo/provider/todos_provider.dart';
+
+/*
+  TodoWidget
+
+  UI of each single TodoModel how they are finally 
+  rendered on the either of the page ([completed] or [todo])
+
+*/
 
 class TodoWidget extends StatelessWidget {
   final TodoModel? todo;
@@ -99,9 +105,7 @@ class TodoWidget extends StatelessWidget {
         ],
         child: Container(
           padding: const EdgeInsets.all(10.0),
-          color: Colors
-              .primaries[colorIndex[Random().nextInt(colorIndex.length)]]
-              .shade50,
+          color: Colors.primaries[todo!.colorIndex!.toInt()].shade50,
           child: Row(
             children: [
               Checkbox(
